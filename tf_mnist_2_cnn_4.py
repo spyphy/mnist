@@ -10,23 +10,19 @@ np.set_printoptions(precision=4, suppress=True)
 
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/mnist", one_hot=True)
-
 x_train = mnist.train.images
 y_train = mnist.train.labels
 x_valid = mnist.validation.images
 y_valid = mnist.validation.labels
 x_test = mnist.test.images
 y_test = mnist.test.labels
-
 print('The train data size:', len(y_train))
 print('The validation data size:', len(y_valid))
 print('The test data size:', len(y_test))
 
-
 BATCH_SIZE = 10
 SAMPLE_SIZE = 500
 NUM_STEPS = 100
-
 
 # some functions
 
@@ -56,7 +52,7 @@ with graph.as_default():
 	
 	NN = 2 # type of neural network
 
-	if NN == 1:  
+	if NN == 1:  # Full-connected
 
 		W1 = tf.Variable(tf.random_uniform([784, 100])) # 784x100 weight matrix.
 		b1 = tf.Variable(tf.zeros([100]))				# 100-element bias vector.
@@ -87,7 +83,6 @@ with graph.as_default():
 		print('p2 =', p2)    # 4*4*64
 
 		# fully-connected layer
-		#m = 64*4*4
 		p2_flat = tf.reshape(p2, [-1, 7*7*64])
 		W3 = weight_variable([7*7*64, 1024], name='W3')
 		b3 = bias_variable([1024], name='b3')
@@ -169,7 +164,6 @@ Possible errors:
 
 ValueError: Only call `softmax_cross_entropy_with_logits` with named arguments
 - 
-
 Use `tf.global_variables_initializer` instead.
 
 """
